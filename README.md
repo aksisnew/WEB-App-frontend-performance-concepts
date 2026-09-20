@@ -24,34 +24,8 @@ A curated collection of web performance techniques, CSS rendering tricks, and as
 
 ---
 
-## 🎨 CSS & Rendering Optimizations
 
-### CSS Blur & Filter Performance
-* **The Issue:** Heavy use of `filter: blur()` or `backdrop-filter` can significantly slow down frame rates, especially during scrolling or animations, because the GPU/browser compositor has to re-calculate rasterization every frame.
-* **Optimization:**
-  * Use fixed overlay elements with pre-rendered blurred assets or keep backdrop filters scoped strictly to smaller, isolated DOM elements.
-  * Combine with `will-change: transform` or `transform: translateZ(0)` to promote rendering to a separate GPU layer when necessary.
 
-### CSS Selector Efficiency
-* **The Issue:** Browsers evaluate CSS selectors from **right to left** (key selector first). Overly deep or nested selectors (e.g., `body div.container ul li a span`) slow down style matching during layout re-calculations.
-* **Optimization:**
-  * Keep selectors shallow and class-driven (e.g., `.nav-link-text`).
-  * Avoid expensive universal (`*`) or attribute selectors on frequently re-rendered elements.
-
-### Layout Thrashing & `will-change`
-* **The Issue:** Rapidly reading and writing geometry properties in CSS/JS causes the browser to repeatedly recalculate layout.
-* **Optimization:**
-  * Use `will-change` sparingly on elements undergoing heavy animation to hint the browser compositor in advance.
-
----
-
-## ⚡ JavaScript & Async Execution
-
-### Asynchronous Operations (`async.md`)
-* Non-blocking rendering loops, efficient `Promise` management, and avoiding main-thread blocking tasks during UI interactions.
-* *See details in [`src/async.md`](./src/async.md).*
-
----
 
 ## 🔮 Upcoming Topics
 
